@@ -167,6 +167,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &322949530 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cc9a215f70c4cb2499e08a5443b25158, type: 3}
+  m_PrefabInstance: {fileID: 394033839}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &322949531
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322949530}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cd55687a4e5f9614795cf326827ad180, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &394033839
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -407,6 +431,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2223639932434330405, guid: cc9a215f70c4cb2499e08a5443b25158, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2223639932434330405, guid: cc9a215f70c4cb2499e08a5443b25158, type: 3}
       propertyPath: m_Animation
       value: 
       objectReference: {fileID: 0}
@@ -424,7 +452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2223639932434330405, guid: cc9a215f70c4cb2499e08a5443b25158, type: 3}
       propertyPath: m_Animations.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2586065998465600510, guid: cc9a215f70c4cb2499e08a5443b25158, type: 3}
       propertyPath: m_Layer
@@ -769,14 +797,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0
   walkSpeed: 10
-  runSpeed: 100
+  runSpeed: 20
+  movementZ: 4
   isGrounded: 0
   distanceFromGround: 0.2
   groundMask:
     serializedVersion: 2
     m_Bits: 64
   gravity: -9.81
-  jumpHeight: 3
+  jumpHeight: 5
 --- !u!143 &1736272965
 CharacterController:
   m_ObjectHideFlags: 0
@@ -840,7 +869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e5470c411e26ade43877cb55d7eb590c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e5470c411e26ade43877cb55d7eb590c, type: 3}
       propertyPath: m_LocalPosition.z

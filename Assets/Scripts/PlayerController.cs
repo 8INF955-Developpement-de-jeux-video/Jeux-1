@@ -10,10 +10,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
-    
-    private float movementZ;
-    private Vector3 velocity;
 
+    [SerializeField] private float movementZ;
+    private float movementX;
+    private Vector3 velocity;
 
 
     [SerializeField] private bool isGrounded;
@@ -56,10 +56,14 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && velocity.y < 0)
             velocity.y = -4f;
 
+        
+        //movementZ = Input.GetAxis("Vertical");
 
+        movementX = Input.GetAxis("Horizontal"); 
 
-        movementZ = Input.GetAxis("Vertical");
-        Vector3 movement = new Vector3(0, 0, movementZ);
+     
+                
+        Vector3 movement = new Vector3(movementX, 0, movementZ);
         
         movement = transform.TransformDirection(movement);
 
@@ -87,13 +91,18 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
+        Vector3 pos = transform.position;
+        
+        pos.x = Mathf.Clamp(pos.x, -25f, 25f);
+
+        transform.position = pos;
 
     }
 
     private void Walk()
     {
         moveSpeed = walkSpeed;
-        //anim.SetFloat("Speed", 0.5f, 0.1f, Time.deltaTime);
+        anim.SetFloat("Speed", 0f, 0.1f, Time.deltaTime);
 
     }
 
@@ -101,16 +110,19 @@ public class PlayerController : MonoBehaviour
     private void Run()
     {
         moveSpeed = runSpeed;
-        //anim.SetFloat("Speed", 1, 0.1f, Time.deltaTime);
+        anim.SetFloat("Speed", 1, 0.1f, Time.deltaTime);
     }
 
     private  void Idle()
     {
-        //anim.SetFloat("Speed", 0, 0.1f, Time.deltaTime);
+        anim.SetFloat("Speed", 0, 0.1f, Time.deltaTime);
     }
     
     private void Jump()
     {
+        anim.SetTrigger("Jump");
         velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
+        
+        
     }
 }
