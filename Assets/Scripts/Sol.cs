@@ -17,6 +17,7 @@ public class Sol : MonoBehaviour
         Destroy(gameObject, 2);
 
     }
+    //Runner
 
     // Update is called once per frame
     void Update()
