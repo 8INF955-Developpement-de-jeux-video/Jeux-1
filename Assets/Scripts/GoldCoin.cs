@@ -10,6 +10,11 @@ public class GoldCoin : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.GetComponent<Obstacle>() !=null)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
             // Verifier la collision avec Ninja
             if (other.gameObject.name != "Ninja")
@@ -18,7 +23,7 @@ public class GoldCoin : MonoBehaviour
         }
         //Ajouter du score
 
-
+        GameManager.inst.IncrementScore();
         // Detruire les pieces
         Destroy(gameObject);
     }

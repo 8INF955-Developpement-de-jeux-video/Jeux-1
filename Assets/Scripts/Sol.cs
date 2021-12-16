@@ -46,7 +46,7 @@ public class Sol : MonoBehaviour
         int coinsToSpawn = 10;
         for (int i = 0; i < coinsToSpawn; i++)
         {
-            GameObject temp = Instantiate(coinPrefab);
+            GameObject temp = Instantiate(coinPrefab, transform);
             temp.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
         }
     }
@@ -63,7 +63,7 @@ public class Sol : MonoBehaviour
             point = GetRandomPointInCollider(collider);
         }
 
-        point.y = 1;
+        point.y = 5;
         return point;
     }
 }
