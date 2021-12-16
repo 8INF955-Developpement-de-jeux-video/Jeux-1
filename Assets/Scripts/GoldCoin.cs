@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GoldCoin : MonoBehaviour
 {
+
+    //pivoter
     public float turnSpeed = 90f;
 
     private void OnTriggerEnter(Collider other)
