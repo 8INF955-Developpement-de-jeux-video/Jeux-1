@@ -1,15 +1,19 @@
-
 using UnityEngine;
 
 public class Sol : MonoBehaviour
 {
     AspetSol aspetSol;
+    [SerializeField] private GameObject obstaclePrefab;
+    [SerializeField] private GameObject coinPrefab;
+    [SerializeField] private GameObject heartPrefab;
+
 
     private void Start()
     {
         aspetSol = GameObject.FindObjectOfType<AspetSol>();
         SpawnObstacle();
-        SpawnCoins();
+        //SpawnCoins();
+        SpawnCoin();
     }
 
  
@@ -29,17 +33,17 @@ public class Sol : MonoBehaviour
         
     }
 
-    public GameObject obstaclePrefab;
+    
     void SpawnObstacle()
     {
-        //choisir un point au hasar pour afficher l'obstacle'
+        //choisir un point au hasard pour afficher l'obstacle
         int obstacleSpawnIndex = Random.Range(2, 5);
         Transform spawnPoint = transform.GetChild(obstacleSpawnIndex).transform;
         //afficher l'obstacle a la position'
         Instantiate(obstaclePrefab, spawnPoint.position, Quaternion.identity, transform);
     }
 
-    public GameObject coinPrefab;
+    //public GameObject coinPrefab;
 
     public void SpawnCoins()
     {
@@ -65,5 +69,70 @@ public class Sol : MonoBehaviour
 
         point.y = 5;
         return point;
+    }
+
+    void SpawnCoin()
+    {
+        //choisir un nombre de pieces alignees :
+        int numCoin = Random.Range(0, 10);
+        //choisir une forme 
+        // 1 pour ligne directe
+        // 2 pour une forme circulaire
+        int formCoin = Random.Range(1,3);
+        float radius = 3f;
+        // choisir la position
+        //2 pour gauche
+        //3 pour milieu
+        //4 pour droite
+        int positionCoin = Random.Range(5, 8);
+
+        Vector3 pos = new Vector3(0, 0, 0);
+
+        pos = transform.GetChild(positionCoin).transform.position;
+
+        GameObject coin = Instantiate(coinPrefab, pos, Quaternion.identity, transform);
+
+        if(formCoin == 1)
+        {
+            for (float i = 0f; i < numCoin; i += 1f)
+            {
+
+                pos = coin.transform.position;
+
+                pos.z += i;
+
+                coin = Instantiate(coinPrefab, pos, Quaternion.identity, transform);
+
+                Debug.Log("position......." + coin.transform.localPosition);
+
+
+            }
+
+        }
+
+        else 
+        {
+            for(float i = 0f; i< numCoin; i+=1f )
+            {
+                pos = coin.transform.position;
+
+                pos.z += i;
+
+
+                if (i < numCoin / 2)
+                    pos.y += i ;
+                else
+                    pos.y -= numCoin -  i;
+
+                coin = Instantiate(coinPrefab, pos, Quaternion.identity, transform);
+
+                Debug.Log("position......." + coin.transform.localPosition);
+            }
+        
+        }
+        
+        
+        
+
     }
 }
