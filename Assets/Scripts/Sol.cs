@@ -103,7 +103,6 @@ public class Sol : MonoBehaviour
 
                 coin = Instantiate(coinPrefab, pos, Quaternion.identity, transform);
 
-                Debug.Log("position......." + coin.transform.localPosition);
 
 
             }
@@ -126,7 +125,6 @@ public class Sol : MonoBehaviour
 
                 coin = Instantiate(coinPrefab, pos, Quaternion.identity, transform);
 
-                Debug.Log("position......." + coin.transform.localPosition);
             }
         
         }
