@@ -14,6 +14,7 @@ public class Sol : MonoBehaviour
         SpawnObstacle();
         //SpawnCoins();
         SpawnCoin();
+        SpawnHearts();
     }
 
  
@@ -79,7 +80,6 @@ public class Sol : MonoBehaviour
         // 1 pour ligne directe
         // 2 pour une forme circulaire
         int formCoin = Random.Range(1,3);
-        float radius = 3f;
         // choisir la position
         //2 pour gauche
         //3 pour milieu
@@ -133,6 +133,24 @@ public class Sol : MonoBehaviour
         
         
         
+
+    }
+
+    void SpawnHearts()
+    {
+
+        int positionHeart = Random.Range(5, 8);
+
+        System.Random r = new System.Random();
+
+        float p = (float)  r.NextDouble();
+
+        if(p < 0.1f)
+        {
+            Vector3 pos = transform.GetChild(positionHeart).transform.position;
+            Instantiate(heartPrefab, pos, Quaternion.identity, transform);
+
+        }
 
     }
 }
