@@ -5,12 +5,25 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 
 {
-    
-    NinjaMoves ninjaMoves;
+    [SerializeField] private float speed;
+    private float previous_x;
     // Start is called before the first frame update
     private  void Start()
     {
-        ninjaMoves = GameObject.FindObjectOfType<NinjaMoves>();
+
+
+        previous_x = transform.localPosition.x;
+
+        if (Random.Range(0, 2) == 1)
+        {
+            transform.localPosition -= new Vector3(speed * Time.deltaTime, 0f, 0f);
+
+        }
+        else 
+        {
+            transform.localPosition += new Vector3(speed * Time.deltaTime, 0f, 0f);
+        }
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -21,10 +34,41 @@ public class Obstacle : MonoBehaviour
             //ninjaMoves.Die();
         }
 
-    }
-    // Update is called once per frame
+    } 
     void Update()
     {
-        
+        float current_x = transform.position.x;
+
+     if( current_x <= previous_x)
+        {
+            if(current_x <= -transform.parent.localScale.x / 2f - 20f)
+            {
+                transform.localPosition += new Vector3(speed * Time.deltaTime, 0f, 0f);
+            }
+            else
+            {
+                transform.localPosition -= new Vector3(speed * Time.deltaTime, 0f, 0f);
+            }
+                
+        }
+     else 
+        {
+            
+            if (current_x >= transform.parent.localScale.x / 2f + 20f)
+            {
+                transform.localPosition -= new Vector3(speed * Time.deltaTime, 0f, 0f);
+            }
+
+            else
+            {
+                transform.localPosition += new Vector3(speed * Time.deltaTime, 0f, 0f);
+
+            }
+
+        }
+
+        previous_x = current_x;
+
+
     }
 }

@@ -16,7 +16,6 @@ public class CoinCollector : MonoBehaviour
         {
 
             Destroy(gameObject);
-            Debug.Log("DestroYed! ");
         }
 
     }
